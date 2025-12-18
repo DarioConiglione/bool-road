@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import { NavLink, Link } from 'react-router-dom';
 import database from '../database/db'
 
 
 export default function HomePage() {
 
     const [data, setData] = useState(database)
-    console.log(data);
+
 
 
     return (
@@ -16,11 +17,12 @@ export default function HomePage() {
                         {
                             data.map(viaggio => (
                                 <div className="col" key={viaggio.id}>
-                                    <div className="card">
-                                        <h3>{viaggio.meta}</h3>
-                                        <p>{viaggio.data_partenza}</p>
-                                        <p>{viaggio.data_ritorno}</p>
-                                    </div>
+                                    <Link to={`/${viaggio.id}`}>
+                                        <div className="card">
+                                            <h3>{viaggio.meta}</h3>
+                                            <p>{viaggio.data_partenza} - {viaggio.data_ritorno}</p>
+                                        </div>
+                                    </Link>
                                 </div>
                             ))
                         }
